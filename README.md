@@ -1,55 +1,52 @@
-# Sky Roller 3D — Skeleton Project
+Sky Roller 3D — Endless Survival
 
-Skeleton project for the Module 5 3D rolling ball game built in Unity. In this module, you will create a complete 3D arcade-style game with player movement, camera follow, collectibles, hazards, score tracking, and level progression.
+An endless survival game built in Unity. You control a rolling ball that moves forward automatically across a procedurally generated track. Steer left and right to stay on the platforms, dodge hazards, and survive as long as possible — the further you travel, the higher your score.
+Setup & Run
 
-This repository contains the starting files and assets used throughout the lectures. The gameplay systems are intentionally incomplete so you can build them step-by-step during the module.
+    Download the ZIP and extract it. Replace the main project folder with the internal folder and its contents.
+    In Unity Hub, choose Add → Add project from disk and select the project folder. Open it with Unity version 6000.4.6f1.
+    In the Project window, open the Scenes folder and open the MainMenu scene.
+    Once the scene finishes loading, press Play, then click Play on the main menu to start a run.
 
----
+Controls
 
-## Features You Will Build
+    Left / Right — A and D, or the arrow keys (steer the ball side to side)
+    Forward movement is automatic — the ball always rolls ahead on its own.
 
-- 3D scene setup and level design
-- Physics-based ball movement
-- Camera follow system
-- Hazard and obstacle interaction
-- Win and lose conditions
+How to Play
 
----
+Stay on the track and avoid falling off. The path occasionally shifts one lane to the left or right, so keep steering to follow it. Watch for hazard patches and obstacles. Your score is the distance you travel, shown at the top of the screen. Falling off ends the run, and you can restart or return to the menu from the Game Over screen.
+Features
+Procedural platform generation
 
-## Project Setup
+The track is built at runtime by a generator that spawns new platform sections ahead of the player as they move forward and removes old sections behind them, so the scene never fills up. The path snaps to discrete lanes (one block-width apart) and occasionally shifts sideways for variety, while keeping every section reachable.
+Four platform prefabs
 
-1. Clone or download this repository.
-2. Open the project using Unity Hub.
-3. Open the `Scenes` folder.
-4. Run `MainMenu` to start the project.
+The generator draws from four distinct platform types to create variety:
 
----
+    Plain — safe ground, and the default most sections use.
+    Mud (Slow) — a brown patch that temporarily slows the ball down.
+    Ice (Slippery) — a blue patch that makes steering sluggish and hard to control.
+    Saw — a platform carrying a moving obstacle that ends the run on contact.
 
-## Controls
+The opening stretch is always plain to give the player a fair start, and hazards appear at a controlled frequency so the game stays playable.
+Three hazard types (beyond falling)
 
-| Action | Key |
-|---|---|
-| Steer Left | A / Left Arrow |
-| Steer Right | D / Right Arrow |
+    Slow zones reduce the ball's speed for a short time.
+    Slippery zones reduce steering control, making the ball harder to maneuver.
+    Moving saw obstacles end the run immediately on contact.
 
----
+There is also a speed boost pickup that temporarily increases forward speed as a positive counterpart to the hazards.
+Survival score
 
-## Folder Structure
+The score tracks the distance traveled and is displayed on screen with UI text during play. The final distance is also shown on the Game Over screen.
+Lose condition & restart flow
 
-| Folder | Purpose |
-|---|---|
-| Animations | Unity animations |
-| Materials | Unity materials |
-| Scenes | Unity scenes |
-| Scripts | Gameplay scripts |
-| Sprites | Kenney Sprites |
+Falling off the platforms ends the run: the ball stops and a Game Over screen appears showing the final distance. From there the player can Restart to begin a fresh run or return to the Main Menu.
+Camera follow
 
----
+A smoothed follow camera tracks the ball as it rolls forward and drifts between lanes.
+Built With
 
-## Assets
- 
-This project uses assets from the following Kenney packs.
- 
-Kenney Assets:
-- https://www.kenney.nl/assets/platformer-kit
-- https://www.kenney.nl/assets/ui-pack-pixel-adventure
+    Unity 6000.4.6f1
+    C# (Unity Input System, TextMeshPro)
